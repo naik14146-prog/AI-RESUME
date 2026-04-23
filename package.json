@@ -16,14 +16,18 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "start": "react-scripts start",
     "server": "cd server && npm run dev",
     "dev": "concurrently \"npm start\" \"npm run server\"",
-    "build": "react-scripts build",
+    "build": "npx react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
