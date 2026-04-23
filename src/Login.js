@@ -92,7 +92,7 @@ function Login() {
                 required
               />
             </div>
-            <div className="forgot">Forgot password?</div>
+            <div className="forgot" onClick={() => navigate("/forgot-password")}>Forgot password?</div>
             <button className="btn" type="submit" disabled={loading}>
                 {loading ? "Signing in..." : "Login →"}
             </button>

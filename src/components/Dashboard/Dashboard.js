@@ -50,9 +50,10 @@ const Dashboard = () => {
                 <nav>
                     <h4>Management</h4>
                     <button className={`nav-resumes ${window.location.pathname === '/dashboard' ? 'active' : ''}`} onClick={() => navigate('/dashboard')}><FaFileAlt /> My Resumes</button>
-                    <button className="nav-templates" onClick={() => navigate('/templates')}><FaMagic /> Templates</button>
-                    <button className="nav-ats" onClick={() => navigate('/ats-checker')}><FaShieldAlt /> ATS Checker</button>
-                    <button className="nav-analytics"><FaChartLine /> Analytics</button>
+                    <button className={`nav-templates ${window.location.pathname === '/templates' ? 'active' : ''}`} onClick={() => navigate('/templates')}><FaMagic /> Templates</button>
+                    <button className={`nav-ats ${window.location.pathname === '/ats-checker' ? 'active' : ''}`} onClick={() => navigate('/ats-checker')}><FaShieldAlt /> ATS Checker</button>
+                    <button className={`nav-analytics ${window.location.pathname === '/analytics' ? 'active' : ''}`} onClick={() => navigate('/analytics')}><FaChartLine /> Analytics</button>
+
 
                     <h4>Account</h4>
                     <button><FaRegClock /> History</button>

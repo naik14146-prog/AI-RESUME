@@ -153,9 +153,15 @@ app.post('/api/ai/generate-summary', authenticateToken, async (req, res) => {
   try {
     const { jobTitle, skills, experience } = req.body;
     if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_openai_api_key_here') {
-        const mockSummary = `Accomplished ${jobTitle || 'Professional'} with expertise in ${skills ? skills.slice(0,3).join(', ') : 'industry-standard technologies'}. Proven track record of delivering high-impact solutions and driving operational excellence in fast-paced environments.`;
+        const summaries = [
+            `Dynamic ${jobTitle || 'Professional'} with over 5 years of experience in ${skills ? skills.slice(0,2).join(' and ') : 'high-impact roles'}. Expertise in driving operational efficiency and leading cross-functional teams to exceed business objectives.`,
+            `Highly skilled ${jobTitle || 'Expert'} specialized in ${skills ? skills.slice(0,3).join(', ') : 'modern industry standards'}. Proven ability to leverage technical proficiency to solve complex challenges and deliver scalable solutions.`,
+            `Result-oriented ${jobTitle || 'Leader'} with a strong background in ${experience && experience[0] ? experience[0].company : 'industry-leading companies'}. Passionate about innovation and continuous improvement in ${skills ? skills[0] : 'core domains'}.`
+        ];
+        const mockSummary = summaries[Math.floor(Math.random() * summaries.length)];
         return res.json({ summary: mockSummary, simulated: true });
     }
+
     const prompt = `Write a professional 2-3 sentence resume summary for a ${jobTitle}. Core skills: ${skills ? skills.join(', ') : 'not specified'}. Experience: ${experience ? JSON.stringify(experience) : 'not specified'}. Tone: Professional, result-oriented.`;
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
@@ -173,9 +179,12 @@ app.post('/api/ai/optimize-bullets', authenticateToken, async (req, res) => {
   try {
     const { bullets } = req.body;
     if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_openai_api_key_here') {
-        const mockOptimized = bullets.map(b => `🚀 Optimized: ${b} - Improved performance and efficiency by 25% using industry best practices.`);
+        const verbs = ['Spearheaded', 'Engineered', 'Orchestrated', 'Optimized', 'Streamlined'];
+        const results = ['resulting in a 30% increase in revenue', 'reducing operational costs by 20%', 'improving system latency by 15ms', 'saving 50+ manual hours per week'];
+        const mockOptimized = bullets.map((b, i) => `${verbs[i % verbs.length]} ${b.toLowerCase()} ${results[i % results.length]}.`);
         return res.json({ optimizedBullets: mockOptimized, simulated: true });
     }
+
     const prompt = `Optimize the following resume bullet points to be more impactful and result-oriented. Use action verbs and quantify achievements where possible. Bullets: ${bullets.join('\n')}`;
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
