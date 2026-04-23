@@ -1,0 +1,148 @@
+.editor-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+.editor-header.glass {
+    height: 72px;
+    background: rgba(15, 23, 42, 0.8) !important; /* Darker header for clarity */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32px;
+    backdrop-filter: blur(25px);
+}
+
+.header-logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    margin-right: 20px;
+    transition: transform 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
+.editor-sidebar.glass {
+    width: 260px;
+    background: rgba(15, 23, 42, 0.4);
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+}
+
+.editor-sidebar button {
+    padding: 14px 20px;
+    margin: 4px 15px;
+    color: #94a3b8;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.editor-sidebar button.active {
+    background: #6366f1 !important;
+    color: white !important;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.editor-form-container.glass {
+    flex: 1;
+    background: rgba(2, 6, 23, 0.6) !important;
+    padding: 60px;
+    max-width: 800px;
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-field input, .input-field textarea {
+    background: rgba(2, 6, 23, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #f8fafc;
+    font-size: 1rem;
+    padding: 15px;
+}
+
+.input-field input:focus {
+    border-color: #6366f1;
+    background: #020617 !important;
+}
+
+.input-field label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.preview-controls {
+    margin-bottom: 24px;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 30px;
+    display: flex;
+    gap: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+.preview-controls span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray);
+    cursor: pointer;
+}
+
+.editor-preview-panel {
+    flex: 1;
+    background: #0f172a; /* Professional dark background to make the white paper pop */
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+    scrollbar-width: thin;
+}
+
+.editor-main {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* Print Styles */
+@media print {
+    .editor-header, .editor-sidebar, .editor-form-container, .ai-assistant-container, .strength-meter, .header-left, .header-right {
+        display: none !important;
+    }
+    
+    .editor-container {
+        padding: 0 !important;
+        background: white !important;
+        height: auto !important;
+    }
+
+    .editor-main {
+        display: block !important;
+        padding: 0 !important;
+        height: auto !important;
+        overflow: visible !important;
+    }
+
+    .editor-preview-panel {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: white !important;
+        overflow: visible !important;
+    }
+
+    .resume-paper {
+        box-shadow: none !important;
+        margin: 0 !important;
+        border: none !important;
+        width: 100% !important;
+    }
+}
+

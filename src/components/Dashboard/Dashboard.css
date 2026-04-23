@@ -1,0 +1,142 @@
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background: transparent;
+}
+
+.dashboard-sidebar.glass {
+    width: 280px;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 32px 20px;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(30px);
+}
+
+.dashboard-sidebar nav button {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    padding: 14px 15px;
+}
+
+.dashboard-sidebar nav button:hover, 
+.dashboard-sidebar nav button.active {
+    background: rgba(99, 102, 241, 0.2) !important;
+    color: white !important;
+}
+
+.logout-btn {
+    margin-top: auto !important;
+    color: #fca5a5 !important;
+}
+
+.logout-btn:hover {
+    background: rgba(239, 68, 68, 0.1) !important;
+    color: #ef4444 !important;
+}
+
+.stat-card {
+    background: rgba(15, 23, 42, 0.5); 
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+}
+
+.stat-card span {
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+.stat-card h3 {
+    color: white;
+    font-size: 2.2rem;
+    margin-top: 10px;
+}
+
+.resume-card {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.resume-card:hover {
+    background: rgba(15, 23, 42, 0.8);
+    transform: scale(1.02);
+    border-color: var(--primary);
+}
+
+.info-top h3 {
+    color: #f8fafc;
+    font-weight: 700;
+}
+
+.search-bar.glass {
+    background: rgba(2, 6, 23, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 450px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.welcome-text {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.welcome-text strong {
+    color: white;
+    font-weight: 600;
+}
+
+
+.match-tag {
+    background: #ecfdf5;
+    color: #059669;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.resume-info p {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.add-card {
+    border: 2px dashed #cbd5e1;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-style: solid;
+    border-color: var(--primary);
+}
+
+.plus-circle {
+    width: 50px;
+    height: 50px;
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+.add-card p { font-weight: 700; color: white; margin-bottom: 4px; }
+.add-card span { font-size: 0.8rem; color: #94a3b8; }
