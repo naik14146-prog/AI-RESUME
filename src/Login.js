@@ -27,24 +27,31 @@ function Login() {
     }
   };
 
-  const handleGoogleLogin = () => {
+  const handleSocialLogin = (provider) => {
     setLoading(true);
     const width = 500, height = 600;
     const left = window.screenX + (window.outerWidth - width) / 2;
     const top = window.screenY + (window.outerHeight - height) / 2;
-    const popup = window.open('about:blank', 'Google Login', `width=${width},height=${height},left=${left},top=${top}`);
+    const popup = window.open('about:blank', `${provider} Login`, `width=${width},height=${height},left=${left},top=${top}`);
     
+    const providerColors = {
+        Google: '#4285f4',
+        Apple: '#000000',
+        Microsoft: '#00a4ef'
+    };
+
     if (popup) {
-        popup.document.write('<html><head><title>Sign in with Google</title><style>body{font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;background:#f8fafc;} .card{background:white;padding:40px;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.1);text-align:center;} h1{font-size:24px;margin-bottom:8px;} p{color:#64748b;margin-bottom:24px;} .btn{background:#4285f4;color:white;border:none;padding:12px 24px;border-radius:4px;font-weight:600;cursor:pointer;}</style></head><body><div class="card"><h1>Sign in</h1><p>to continue to AI Resume Pro</p><div style="border:1px solid #e2e8f0;padding:12px;border-radius:4px;margin-bottom:24px;display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:#ef4444;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:bold;">P</div><div style="text-align:left;"><strong>Praveen Naik</strong><br/><span style="font-size:12px;color:#64748b;">praveen.naik@gmail.com</span></div></div><button class="btn" onclick="window.opener.postMessage(\'google-success\', \'*\'); window.close();">Continue as Praveen</button></div></body></html>');
+        popup.document.write(`<html><head><title>Sign in with ${provider}</title><style>body{font-family:sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;background:#f8fafc;} .card{background:white;padding:40px;border-radius:8px;box-shadow:0 4px 6px rgba(0,0,0,0.1);text-align:center;} h1{font-size:24px;margin-bottom:8px;} p{color:#64748b;margin-bottom:24px;} .btn{background:${providerColors[provider]};color:white;border:none;padding:12px 24px;border-radius:4px;font-weight:600;cursor:pointer;}</style></head><body><div class="card"><h1>Sign in</h1><p>to continue to AI Resume Pro</p><div style="border:1px solid #e2e8f0;padding:12px;border-radius:4px;margin-bottom:24px;display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:#64748b;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-weight:bold;">U</div><div style="text-align:left;"><strong>Secure User</strong><br/><span style="font-size:12px;color:#64748b;">user@example.com</span></div></div><button class="btn" onclick="window.opener.postMessage('social-success', '*'); window.close();">Continue as User</button></div></body></html>`);
     }
 
     const handleMessage = (event) => {
-        if (event.data === 'google-success') {
-            localStorage.setItem('token', 'mock-google-token');
-            localStorage.setItem('user', JSON.stringify({ name: 'Praveen Naik', email: 'praveen.naik@gmail.com', id: 'google-123' }));
+        if (event.data === 'social-success') {
+            localStorage.setItem('token', `mock-${provider.toLowerCase()}-token`);
+            localStorage.setItem('user', JSON.stringify({ name: 'Secure User', email: 'user@example.com', id: `${provider.toLowerCase()}-123` }));
             navigate('/dashboard');
         }
     };
+
     window.addEventListener('message', handleMessage, { once: true });
   };
 
@@ -90,10 +97,16 @@ function Login() {
                 {loading ? "Signing in..." : "Login →"}
             </button>
             <div className="divider">or continue with</div>
-            <div className="social">
-              <button type="button" onClick={handleGoogleLogin}><FcGoogle size={22} /></button>
-              <button type="button"><FaApple size={20} color="black" /></button>
-              <button type="button"><FaMicrosoft size={20} color="#4CAF50" /></button>
+            <div className="social-column">
+              <button type="button" className="social-btn google" onClick={() => handleSocialLogin('Google')}>
+                <FcGoogle size={22} /> <span>Sign in with Google</span>
+              </button>
+              <button type="button" className="social-btn apple" onClick={() => handleSocialLogin('Apple')}>
+                <FaApple size={20} /> <span>Sign in with Apple</span>
+              </button>
+              <button type="button" className="social-btn microsoft" onClick={() => handleSocialLogin('Microsoft')}>
+                <FaMicrosoft size={20} /> <span>Sign in with Microsoft</span>
+              </button>
             </div>
             <p className="signup">
               Don’t have an account? <span onClick={() => navigate("/signup")}>Sign up</span>

@@ -49,10 +49,11 @@ const Dashboard = () => {
                 </div>
                 <nav>
                     <h4>Management</h4>
-                    <button className="active" onClick={() => navigate('/dashboard')}><FaFileAlt /> My Resumes</button>
-                    <button onClick={() => navigate('/templates')}><FaMagic /> Templates</button>
-                    <button onClick={() => navigate('/ats-checker')}><FaShieldAlt /> ATS Checker</button>
-                    <button><FaChartLine /> Analytics</button>
+                    <button className={`nav-resumes ${window.location.pathname === '/dashboard' ? 'active' : ''}`} onClick={() => navigate('/dashboard')}><FaFileAlt /> My Resumes</button>
+                    <button className="nav-templates" onClick={() => navigate('/templates')}><FaMagic /> Templates</button>
+                    <button className="nav-ats" onClick={() => navigate('/ats-checker')}><FaShieldAlt /> ATS Checker</button>
+                    <button className="nav-analytics"><FaChartLine /> Analytics</button>
+
                     <h4>Account</h4>
                     <button><FaRegClock /> History</button>
                     <button className="logout-btn" onClick={handleLogout}><FaSignOutAlt /> Sign Out</button>
