@@ -7,6 +7,7 @@ const apiRequest = async (endpoint, options = {}) => {
         ...options.headers,
     };
 
+
     if (token) {
         headers['Authorization'] = `Bearer ${token}`;
     }
