@@ -70,9 +70,10 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-app.get('/', (req, res) => {
-  res.send('AI Resume Builder API is running');
-});
+const path = require('path');
+
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.post('/api/auth/register', async (req, res) => {
   try {
@@ -197,6 +198,10 @@ app.post('/api/ai/optimize-bullets', authenticateToken, async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: 'Failed to optimize bullets with AI' });
   }
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
 
 app.listen(PORT, () => {
